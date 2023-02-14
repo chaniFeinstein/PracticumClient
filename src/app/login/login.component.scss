@@ -1,0 +1,81 @@
+.example-form {
+    min-width: 150px;
+    max-width: 500px;
+    width: 100%;
+  }
+  
+  .example-full-width {
+    width: 100%;
+  }
+//   form {
+//   display:flex;
+//   flex-wrap: wrap;
+//  padding: 2%;
+//   height: 5vh;
+//   width:15vw;
+// }
+section {
+  display: table;
+}
+
+  .ng-untouched ~ .md-input-messages-animation {
+     height: 0;
+     opacity: 0;
+     transition: height 0.3s, opacity 0.3s;
+  }
+
+.example-label {
+  display: table-cell;
+  font-size: 14px;
+  margin-left: 8px;
+  min-width: 120px;
+}
+
+.example-button-row {
+  display: table-cell;
+  max-width: 600px;
+}
+
+.example-button-row .mat-mdc-button-base {
+  margin: 8px 8px 8px 0;
+}
+
+.example-flex-container {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.example-button-container {
+  display: flex;
+  justify-content: center;
+  width: 120px;
+}
+.example-action-buttons {
+  padding-bottom: 20px;
+}
+
+.example-headers-align .mat-expansion-panel-header-description {
+  justify-content: space-between;
+  align-items: center;
+}
+
+.example-headers-align .mat-mdc-form-field + .mat-mdc-form-field {
+  margin-left: 8px;
+}
+form{
+  display:flex ;
+  flex-wrap: wrap;
+  padding: 1em;
+  justify-content: space-evenly;
+}
+mat-form-field{
+  // display:flex ;
+  // flex-wrap: wrap;
+  padding: 1em;
+  // justify-content: space-evenly;
+}
+input{
+  display: inline-flex;
+}
+

@@ -1,0 +1,94 @@
+<mat-accordion class="example-headers-align" multi>
+  <mat-expansion-panel>
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        Personal data
+      </mat-panel-title>
+      <mat-panel-description>
+נא מלאו פרטיכם האישיים        <mat-icon>account_circle</mat-icon>
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+
+    <p>פרטים אישיים</p>
+    <form  (ngSubmit)="save(myform)" #myform="ngForm" >
+  <mat-form-field appearance="fill">
+    <mat-label>שם פרטי</mat-label>
+    <input matInput [(ngModel)]="userSer.curentUserSer.FirstName" name="fname" required pattern="[a-zA-Z ]*" #Fname="ngModel">
+  </mat-form-field>
+  <div class="errors" *ngIf="Fname.touched&&Fname.errors&&Fname.errors['required']">זהו שדה חובה</div>
+  <div class="errors" *ngIf="Fname.invalid && (Fname.dirty || Fname.touched)">שם יכול להכיל אותיות בלבד</div>
+  <mat-form-field appearance="fill">
+    <mat-label>שם משפחה</mat-label>
+    <input matInput [(ngModel)]="userSer.curentUserSer.LastName" name="lname" required pattern="[a-zA-Z ]*" #Lname="ngModel">
+  </mat-form-field>
+  <div class="errors" *ngIf="Lname.touched&&Lname.errors&&Lname.errors['required']">זהו שדה חובה</div>
+  <div class="errors" *ngIf="Lname.invalid && (Lname.dirty || Lname.touched)">שם יכול להכיל אותיות בלבד</div>
+   
+    
+  <mat-form-field appearance="fill">
+    <mat-label>תעודת זהות</mat-label>
+    <input matInput [(ngModel)]="userSer.curentUserSer.TZ" name="TZ" required pattern="[0-9]*"  #tz="ngModel">
+  </mat-form-field>
+  <div class="errors" *ngIf="tz.touched&&tz.errors&&tz.errors['required']">זהו שדה חובה</div>
+  <div class="errors" *ngIf="tz.invalid && (tz.dirty || tz.touched)">לא יתכנו תווים שאינם ספרות בתעודת זהות</div>
+  <mat-form-field appearance="fill">
+    <mat-label>קופת חולים</mat-label>
+    <mat-select [(ngModel)]="userSer.curentUserSer.HMO" name="hmo" required>
+      <mat-option value="Clalit">כללית</mat-option>
+      <mat-option value="Meuhedet">מאוחדת</mat-option>
+      <mat-option value="Macabi">מכבי</mat-option>
+      <mat-option value="Leumit">לאומית</mat-option>
+    </mat-select>
+  </mat-form-field>
+  <div>
+  <mat-form-field appearance="fill">
+    <mat-label>מצב אישי</mat-label>
+    <mat-select #personalState name="personalState" required>
+      <mat-option value='true'>נשוי</mat-option>
+      <mat-option value='false'>רווק</mat-option>
+    </mat-select>
+  </mat-form-field>
+  <p *ngIf="personalState.value=='true'">
+    <mat-form-field appearance="fill">
+      <mat-label>תעודת זהות של בן זוג </mat-label> 
+      <input matInput  [(ngModel)]="userSer.curentUserSer.GetTz"  name="GetTz">
+    </mat-form-field> 
+  </p></div>
+  <mat-form-field appearance="fill">
+    <mat-label>מין</mat-label>
+    <mat-select [(ngModel)]="userSer.curentUserSer.Gender" name="Gender" required>
+      <mat-option value="male">זכר</mat-option>
+      <mat-option value="fmale">נקבה</mat-option>
+    </mat-select>
+  </mat-form-field>
+  <input type="date"[(ngModel)]="userSer.curentUserSer.BornDate" name="BornDate" required >
+ <div *ngIf="state">
+  <mat-form-field appearance="fill">
+    <mat-label>שם פרטי</mat-label> 
+    <input matInput required pattern="[a-zA-Z ]*" [(ngModel)]="empty.FirstName"  name="n">
+  </mat-form-field> 
+  <mat-form-field appearance="fill">
+    <mat-label>תעודת זהות</mat-label>
+    <input matInput  required pattern="[0-9 ]*" [(ngModel)]="empty.TZ"  name="t"required>
+  </mat-form-field>
+  <input type="date"[(ngModel)]="empty.BornDate" name="BornDate" required >
+ </div>
+  <input type="button" value="add child" (click)="addChild()" />
+  <input *ngIf="state" type="button" value="send child" (click)="sendChild()" />
+      <input type="submit" [disabled]="!myform.valid"/>
+      <input type="button"value="להורדת הנתונים"(click)="IsManage()">
+      <mat-form-field *ngIf="wanted" appearance="fill">
+        <mat-label>סיסמת מנהל</mat-label>
+        <input matInput  required pattern="[0-9 ]*" [(ngModel)]="inputPass"  name="t"required>
+      </mat-form-field>
+      <div *ngIf="wanted">
+      <input  type="button"value=" להורדת הנתונים כמנהל"(click)="download()">
+    </div>
+    </form>
+
+  </mat-expansion-panel>
+  <mat-expansion-panel disabled>
+  <form  (ngSubmit)="save(myform)" #myform="ngForm" >
+    
+   
+ 
