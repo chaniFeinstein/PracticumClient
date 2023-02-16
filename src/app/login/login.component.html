@@ -48,12 +48,15 @@
       <mat-option value='false'>רווק</mat-option>
     </mat-select>
   </mat-form-field>
-  <p *ngIf="personalState.value=='true'">
+  <span *ngIf="personalState.value=='true'">
     <mat-form-field appearance="fill">
-      <mat-label>תעודת זהות של בן זוג </mat-label> 
-      <input matInput  [(ngModel)]="userSer.curentUserSer.GetTz"  name="GetTz">
-    </mat-form-field> 
-  </p></div>
+      <mat-label>תעודת זהות של בן/ת זוג</mat-label>
+      <input matInput [(ngModel)]="userSer.curentUserSer.GetTz" name="GetTZ" required pattern="[0-9]*"  #Gtz="ngModel">
+    </mat-form-field>
+    <div class="errors" *ngIf="Gtz.touched&&Gtz.errors&&Gtz.errors['required']">זהו שדה חובה</div>
+    <div class="errors" *ngIf="Gtz.invalid && (Gtz.dirty || Gtz.touched)">לא יתכנו תווים שאינם ספרות בתעודת זהות</div>
+ </span>
+</div>
   <mat-form-field appearance="fill">
     <mat-label>מין</mat-label>
     <mat-select [(ngModel)]="userSer.curentUserSer.Gender" name="Gender" required>
@@ -61,8 +64,14 @@
       <mat-option value="fmale">נקבה</mat-option>
     </mat-select>
   </mat-form-field>
-  <input type="date"[(ngModel)]="userSer.curentUserSer.BornDate" name="BornDate" required >
+  <mat-form-field appearance="fill">
+    <mat-label>תאריך לידה</mat-label>
+    <input matInput type="date"  [(ngModel)]="userSer.curentUserSer.BornDate"  name="BornDate"required>
+  </mat-form-field>
+  <button  class="but" mat-button color="accent" (click)="addChild()" >+ הוסף ילד/ה</button>
+
  <div *ngIf="state">
+   <p>פרטי ילד/ה</p>
   <mat-form-field appearance="fill">
     <mat-label>שם פרטי</mat-label> 
     <input matInput required pattern="[a-zA-Z ]*" [(ngModel)]="empty.FirstName"  name="n">
@@ -71,12 +80,14 @@
     <mat-label>תעודת זהות</mat-label>
     <input matInput  required pattern="[0-9 ]*" [(ngModel)]="empty.TZ"  name="t"required>
   </mat-form-field>
-  <input type="date"[(ngModel)]="empty.BornDate" name="BornDate" required >
+  <mat-form-field appearance="fill">
+    <mat-label>תאריך לידה</mat-label>
+    <input matInput type="date"   [(ngModel)]="empty.BornDate"  name="DateBorn"required>
+  </mat-form-field>
+  <button  class="but" mat-button color="accent" (click)="sendChild()" >+ שמור ילד/ה</button>
  </div>
-  <input type="button" value="add child" (click)="addChild()" />
-  <input *ngIf="state" type="button" value="send child" (click)="sendChild()" />
-      <input type="submit" [disabled]="!myform.valid"/>
-      <input type="button"value="להורדת הנתונים"(click)="IsManage()">
+      <button  class="but"type="submit" id="add" mat-raised-button [disabled]="!myform.valid" >שמירה</button>
+      <input  class="but" type="button"value="להורדת הנתונים"(click)="IsManage()">
       <mat-form-field *ngIf="wanted" appearance="fill">
         <mat-label>סיסמת מנהל</mat-label>
         <input matInput  required pattern="[0-9 ]*" [(ngModel)]="inputPass"  name="t"required>

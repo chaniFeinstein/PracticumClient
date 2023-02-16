@@ -44,7 +44,6 @@ personalState=false
  this.userSer.addUser(this.userSer.curentUserSer).subscribe((succ) => {
         console.log("הגיע");
         console.log(succ);
-    
         if(succ==null)
         alert("קיים כבר משתמש עם מספר זהות זה")
        else {alert("נוסף בהצלחה!!");
@@ -55,11 +54,7 @@ personalState=false
           alert(" שגיאה בקבלת הנתונים");
           console.log(err)
         });
-        
-}
-stepChanged(event, stepper){
-  stepper.selected.interacted = false;
-}
+      }
 addChild(){ 
 this.state=true;
 }
@@ -67,14 +62,11 @@ sendChild(){
   this.empty.GetTz=this.userSer.curentUserSer.GetTz
   this.empty.Status = "child";
   this.empty.HMO=this.userSer.curentUserSer.HMO
-  // this.arrDown.push(this.empty);
   this.userSer.addUser(this.empty).subscribe((succ) => {
     console.log("הגיע");
     if(succ==null)
         alert("קיים כבר משתמש עם מספר זהות זה")
        else alert("נוסף בהצלחה!!");
-      
-    ;
   },
     (err) => {
       alert(" שגיאה בקבלת הנתונים");
